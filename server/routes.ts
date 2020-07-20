@@ -4,9 +4,6 @@ import { Query, PopularityType } from './queries';
 
 export class Route {
     private query: Query = new Query();
-    constructor() {
-    }
-
     public getAllNotes(db: Database) {
         return (request: Request, response: Response) => {
             db.all(this.query.getAllNotes(), [], (error, rows) => {

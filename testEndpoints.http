@@ -1,0 +1,14 @@
+###
+GET http://localhost:3000/all
+
+###
+GET http://localhost:3000/categories
+
+###
+GET http://localhost:3000/category/1
+
+###
+GET http://localhost:3000/search/scrol
+
+###
+GET http://localhost:3000/popularity

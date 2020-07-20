@@ -1,4 +1,3 @@
-
 export interface NewNote {
     category: number;
     note: string;
@@ -7,9 +6,16 @@ export interface NewNote {
 
 export type PopularityType = 'DOWNVOTE' | 'UPVOTE';
 
-export class Query {
-    constructor() {}
+export const connectToDb = () => {
+    return (error: Error) => {
+        if (error) {
+            console.log('SQL DB openning error: ', error.message);
+        }
+        console.log('Connected to 💾 DB ');
+    }
+}
 
+export class Query {
     public getNoteById(noteId: number) {
         return `SELECT * FROM notes WHERE id = ${noteId}`;
     }
@@ -31,7 +37,7 @@ export class Query {
 
     public getAllNotesByString(notePartialText: string, orderByTimeOfCreation: string = 'DESC' ) {
         return `SELECT * FROM notes 
-            WHERE note LIKE '%${notePartialText}%' 
+            WHERE (note || title) LIKE '%${notePartialText}%' 
             ORDER BY 
             date_created ${orderByTimeOfCreation}`;
     }
