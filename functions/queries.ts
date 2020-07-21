@@ -16,8 +16,9 @@ export const connectToDb = () => {
 }
 
 export class Query {
-    public getNoteById(noteId: number) {
-        return `SELECT * FROM notes WHERE id = ${noteId}`;
+
+    public getNoteById(noteId: string) {
+        return `SELECT * FROM notes WHERE id="${noteId}"`;
     }
 
     public getAllNotes() {

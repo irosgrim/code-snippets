@@ -6,6 +6,18 @@ var Route = /** @class */ (function () {
     function Route() {
         this.query = new queries_1.Query();
     }
+    Route.prototype.getNote = function (db) {
+        var _this = this;
+        return function (request, response) {
+            var noteId = request.params.id;
+            db.get(_this.query.getNoteById(noteId), [], function (error, row) {
+                if (error) {
+                    console.log('error on getting note with id: ' + noteId);
+                }
+                response.send(row);
+            });
+        };
+    };
     Route.prototype.getAllNotes = function (db) {
         var _this = this;
         return function (request, response) {

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
-var routes_1 = require("./server/routes");
-var queries_1 = require("./server/queries");
+var routes_1 = require("./functions/routes");
+var queries_1 = require("./functions/queries");
 var express = require('express');
 var sqlite3 = require('sqlite3').verbose();
 var path = require('path');
@@ -13,6 +13,7 @@ var db = new sqlite3.Database(dbPath, queries_1.connectToDb);
 var route = new routes_1.Route();
 app.listen(port, function () { return console.log('notes server 🔥 on port: ', +port); });
 app.use('/', express.static(path.join(__dirname, 'www')));
+app.get('/note/:id', route.getNote(db));
 app.get('/all', route.getAllNotes(db));
 app.get('/categories', route.getAllCategories(db));
 app.get('/category/:category', route.getAllNotesByCategory(db));

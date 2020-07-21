@@ -4,6 +4,19 @@ import { Query, PopularityType } from './queries';
 
 export class Route {
     private query: Query = new Query();
+
+    public getNote(db: Database) {
+        return (request: Request, response: Response) => {
+            const noteId = request.params.id;
+            db.get(this.query.getNoteById(noteId), [], (error, row) => {
+                if (error) {
+                    console.log('error on getting note with id: ' + noteId);
+                }
+                response.send(row);
+            })
+        }
+    }
+
     public getAllNotes(db: Database) {
         return (request: Request, response: Response) => {
             db.all(this.query.getAllNotes(), [], (error, rows) => {

@@ -1,8 +1,9 @@
 require('dotenv').config();
 import { Application } from 'express';
+
 import { sqlite3, Database } from 'sqlite3';
-import { Route} from './server/routes';
-import { connectToDb } from './server/queries';
+import { Route} from './functions/routes';
+import { connectToDb } from './functions/queries';
 
 const express = require('express');
 const sqlite3: sqlite3 = require('sqlite3').verbose();
@@ -17,6 +18,7 @@ app.listen(port, () => console.log('notes server 🔥 on port: ', + port))
 
 app.use('/', express.static(path.join(__dirname, 'www')));
 
+app.get('/note/:id', route.getNote(db));
 app.get('/all', route.getAllNotes(db));
 app.get('/categories', route.getAllCategories(db));
 app.get('/category/:category', route.getAllNotesByCategory(db));

@@ -13,7 +13,7 @@ var Query = /** @class */ (function () {
     function Query() {
     }
     Query.prototype.getNoteById = function (noteId) {
-        return "SELECT * FROM notes WHERE id = " + noteId;
+        return "SELECT * FROM notes WHERE id=\"" + noteId + "\"";
     };
     Query.prototype.getAllNotes = function () {
         return "SELECT * FROM notes";

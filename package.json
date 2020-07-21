@@ -2,12 +2,12 @@
   "name": "snippets",
   "version": "1.0.2",
   "description": "save and search ideas and code snippets",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon dist/index.js",
+    "serve": "nodemon ./dist/index.js",
     "start": "tsc && node dist/index.js",
-    "serve-dev": "tsc -w & nodemon -q -w dist dist/index.js"
+    "serve-dev": "tsc -w & nodemon -q -w ./dist ./dist/index.js"
   },
   "keywords": [
     "code",
